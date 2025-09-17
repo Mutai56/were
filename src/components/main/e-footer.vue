@@ -1,23 +1,3 @@
-<i18n>
-{
-  "en": {
-    "copyrights": "Purpose Centre - All rights reserved.",
-    "description": "Purpose Centre is a Christian based coaching organization, whose main objective is to support individual and organization development by nurturing a culture of psychological wellbeing for individuals, leaders, and institution development.",
-    "created-by": "This website was designed, coded and developed by Gilbert Were.",
-    "links": "Navigation:",
-
-    "contact": {
-      "subheader": "contact us via:",
-      "whatsapp": "WhatsApp",
-      "email": "Email Address",
-      "facebook": "Facebook Page",
-      "website": "Website",
-      "phone": "Phone"
-    }
-  }
-}
-</i18n>
-
 <template>
   <footer class="e-footer footer-bg strong-text--text" :class="{ phone: phoneOnly }">
     <v-container data-aos="fade-up" data-aos-duration="600" class="row-container text--text py-10">
@@ -49,17 +29,16 @@
           </v-list>
         </v-col>
 
-        <!-- Contact Section: Visible on All Devices -->
+        <!-- Contact Section -->
         <v-col :cols="pcOnly ? 4 : 12" class="ps-lg-12">
           <v-subheader class="text--text">{{ $t("contact.subheader") }}</v-subheader>
           <v-list color="footer-bg" dark class="text--text" two-line>
             <v-list-item
-  v-for="item in contactItems"
-  :key="item.name"
-  :target="item.href ? '_blank' : ''"
-  :href="item.href ? item.href : item.name === 'email' ? `mailto:${item.value}` : ''"
->
-
+              v-for="item in contactItems"
+              :key="item.name"
+              :target="item.href ? '_blank' : ''"
+              :href="item.href"
+            >
               <v-list-item-icon>
                 <v-icon :color="item.color">{{ item.icon }}</v-icon>
               </v-list-item-icon>
@@ -74,7 +53,6 @@
     </v-container>
 
     <!-- Footer Watermark -->
-    <v-spacer />
     <div class="footer-watermark flex-column">
       <v-container class="text-center py-0">
         <div v-if="pcOnly" style="display: none;" class="details-text text--text mb-3">
@@ -105,36 +83,35 @@ export default {
       links,
       founders,
       contactItems: [
-  {
-    name: "whatsapp",
-    icon: "mdi-whatsapp",
-    value: "+254 796 614 853",
-    color: "green darken-1",
-    href: "https://wa.me/254796614853", // Already correct
-  },
-  {
-    name: "email",
-    icon: "mdi-email",
-    value: "info@purpose-centre.com",
-    color: "white",
-    href: "mailto:info@purpose-centre.com", // Add this
-  },
-  {
-    name: "facebook",
-    icon: "mdi-facebook",
-    value: "@PurposeCentreKe",
-    color: "blue darken-1",
-    href: "https://www.facebook.com/PurposeCentreKe", // Fix empty href
-  },
-  {
-    name: "phone",
-    icon: "mdi-phone",
-    value: "+254 796 614 853",
-    color: "grey",
-    href: "tel:+254796614853", // Already correct
-  },
-],
-
+        {
+          name: "whatsapp",
+          icon: "mdi-whatsapp",
+          value: "+254 796 614 853",
+          color: "green darken-1",
+          href: "https://wa.me/254796614853",
+        },
+        {
+          name: "email",
+          icon: "mdi-email",
+          value: "info@purpose-centre.com",
+          color: "white",
+          href: "mailto:info@purpose-centre.com",
+        },
+        {
+          name: "facebook",
+          icon: "mdi-facebook",
+          value: "@PurposeCentreKe",
+          color: "blue darken-1",
+          href: "https://www.facebook.com/PurposeCentreKe",
+        },
+        {
+          name: "phone",
+          icon: "mdi-phone",
+          value: "+254 796 614 853",
+          color: "grey",
+          href: "tel:+254796614853",
+        },
+      ],
     };
   },
   computed: { ...GlobalComputed },
@@ -146,13 +123,13 @@ export default {
 .e-footer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start; /* change from center to flex-start */
+  align-items: stretch;        /* footer stretches full width */
   width: 100%;
+  flex-shrink: 0;              /* prevents footer from collapsing */
 
   &.phone {
-    min-height: auto;
-    padding: 2rem 1rem !important;  // <-- add this here
+    padding: 2rem 1rem !important;
   }
 
   .row-container {
@@ -168,11 +145,6 @@ export default {
     padding: 1.5rem 0;
     line-height: 1.6rem;
     background-color: rgba(0, 0, 0, 0.3);
-    text-align: center;
   }
 }
-
-
-  
-
 </style>
