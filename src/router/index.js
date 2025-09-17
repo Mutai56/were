@@ -74,9 +74,9 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode: 'hash',          // <--- hash mode ensures GH Pages works without blank page
-  base: process.env.BASE_URL,
-  routes,
+  mode: 'hash',   // <-- this is important for GH Pages
+  base: '/',
+  routes
 });
 
 // Auth guard
