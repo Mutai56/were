@@ -17,90 +17,74 @@ const routes = [
     path: "/",
     name: "home",
     component: Home,
-    meta: {
-      layout: 'blank',
-    },
+    meta: { layout: 'blank' },
   },
   {
     path: "/our-founder",
     name: "founder",
     component: Founder,
-    meta: {
-      layout: 'blank',
-    },
+    meta: { layout: 'blank' },
   },
   {
     path: "/booking",
     name: "booking",
     component: Booking,
-    meta: {
-      layout: 'blank',
-    },
+    meta: { layout: 'blank' },
   },
   {
     path: "/booking/:id",
-    name: "booking",
+    name: "booking-detail", // renamed to avoid duplicate names
     component: Booking,
     props: true,
-    meta: {
-      layout: 'blank',
-    },
+    meta: { layout: 'blank' },
   },
   {
     path: "/confirm",
     name: "confirm",
     component: Confirm,
-    meta: {
-      layout: 'blank',
-    },
+    meta: { layout: 'blank' },
   },
   {
     path: "/register",
     name: "register",
     component: Register,
-    meta: {
-      layout: 'blank',
-    },
+    meta: { layout: 'blank' },
   },
   {
     path: "/login",
     name: "login",
     component: Login,
-    meta: {
-      layout: 'blank',
-    },
+    meta: { layout: 'blank' },
   },
   {
     path: "/dashboard",
     name: "dashboard",
-    component: Dashboard
+    component: Dashboard,
   },
   {
     path: "/bookings",
     name: "bookings",
-    component: Bookings
+    component: Bookings,
   },
   {
     path: "/account-settings",
     name: "account-settings",
-    component: AccountSettings
+    component: AccountSettings,
   },
 ];
 
 const router = new VueRouter({
-  // mode: "history",
+  mode: 'hash',          // <--- hash mode ensures GH Pages works without blank page
   base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
-// control auth in all routes
+// Auth guard
 router.beforeEach((to, from, next) => {
-  const publicPages = ['/login', '/register', '/', '/booking', '/confirm', '/register', '/our-founder'];
+  const publicPages = ['/', '/login', '/register', '/booking', '/confirm', '/our-founder'];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('token');
 
-  // trying to access a restricted page + not logged in
-  // redirect to login page
   if (authRequired && !loggedIn) {
     next({ path: '/login' });
   } else {
