@@ -1,16 +1,21 @@
 {
-    "links": {
-        "home": "Home",
-        "about": "About Us",
-        "values": "Values",
-        "gallery": "Gallery",
-        "contact": "Contact Us"
-    },
-    "founders": {
-        "home": "Home",
-        "about": "About Our Founder",
-        "areas": "Expertise",
-        "achievements": "Achievements",
-        "contact": "Contact Us"
-    }
+  "description": "Purpose Centre is a Christian based coaching organization, whose main objective is to support individual and organization development by nurturing a culture of psychological wellbeing for individuals, leaders, and institution development.",
+  "links": {
+    "subheader": "Navigations",
+    "home": "Home",
+    "about": "About Us",
+    "values": "Values",
+    "gallery": "Gallery",
+    "contact": "Contact Us"
+  },
+  "founders": {
+    "home": "Home",
+    "about": "About Our Founder",
+    "areas": "Expertise",
+    "achievements": "Achievements",
+    "contact": "Contact Us"
+  },
+  "contact": {
+    "subheader": "Contact Us via"
+  }
 }
